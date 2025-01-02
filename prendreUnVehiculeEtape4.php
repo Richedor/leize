@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <link rel="stylesheet" href="style.css">
-  <?php
-        include_once "parametres.php";
-    ?>
-  <title>Prendre un vehicule - Etape 4</title>
-  </head>
-  
-  
-  <body>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="style.css">
+<?php
+    include_once "parametres.php";
+?>
+<title>Prendre un vehicule - Etape 4</title>
+</head>
+
+<body>
+<?php include 'menu.php'; ?>
+
+<div class="content">
+    <h1>Confirmation de réservation</h1>
     <?php
     // pour un vélo :
     //prendreUnVehiculeEtape4.php?idPersonne=2&idVehicule=3&dateDepart=2023-10-16&heureDepart=12:25&lieuDepart=Roanne&natureMission=Visite stagiaire&destination=Lyon
 
     // pour une voiture :
     //prendreUnVehiculeEtape4.php?idPersonne=2&idVehicule=2&dateDepart=2023-10-16&heureDepart=12:25&lieuDepart=Roanne&natureMission=Visite stagiaire&destination=Lyon&kilometrageDeDepart=145254&nomAccompagnant1=&prenomAccompagnant1=&nomAccompagnant2=&prenomAccompagnant2=&nomAccompagnant3=&prenomAccompagnant3=
-    
+
     // on doit enregistrer dans la table trajet (et dans la table accompagnants s'il y a des accompagnants) les informations recues
-        
+
     // on verifie que les variables idPersonne, idVehicule, dateDepart, heureDepart, natureDeLaMission et lieuDeDepart existent et que ce sont des nombres entiers pour certains
-    if (isset($_GET['idPersonne']) && ctype_digit($_GET['idPersonne']) && isset($_GET['idVehicule']) && ctype_digit($_GET['idVehicule']) && isset($_GET['dateDepart']) && isset($_GET['heureDepart']) && isset($_GET['natureMission']) && isset($_GET['lieuDepart']) && isset($_GET['destination']))
-    {
+    if (isset($_GET['idPersonne']) && ctype_digit($_GET['idPersonne']) && isset($_GET['idVehicule']) && ctype_digit($_GET['idVehicule']) && isset($_GET['dateDepart']) && isset($_GET['heureDepart']) && isset($_GET['natureMission']) && isset($_GET['lieuDepart']) && isset($_GET['destination'])) {
         // les variables existent et ce sont des nombres pour certains
-        
-        try
-        {
+
+        try {
             // Vérifier si le véhicule est déjà réservé
             $requeteVerif = "SELECT COUNT(*) FROM trajet WHERE idVehicule = :idVehicule AND dateArrivee IS NULL";
             $reponseVerif = $connexionALaBdD->prepare($requeteVerif);
@@ -44,13 +45,12 @@
                     $reponse = $connexionALaBdD->prepare($requete);
                     //echo "kilometrage depart : " . $_GET['kilometrageDepart'] . "<br/>";
                     $reponse->bindParam(':kilometrageDepart', $_GET['kilometrageDepart']);
-                }
-                else {
+                } else {
                     //echo "<br/>ce n'est pas une voiture que l'utilisateur veut utiliser !!!<br/>";
                     $requete = "INSERT INTO trajet (nature, dateDepart, heureDepart, lieuDepart, destination, idPersonne, idVehicule) VALUES (:nature, :dateDepart, :heureDepart, :lieuDepart, :destination, :idPersonne, :idVehicule)";
                     $reponse = $connexionALaBdD->prepare($requete);
                 }
-                
+
                 // $reponse est un objet de type PDOStatement
                 //echo "nature mission : " . $_GET['natureMission'] . "<br/>";
                 $reponse->bindParam(':nature', $_GET['natureMission']);
@@ -66,9 +66,9 @@
                 $reponse->bindParam(':idPersonne', $_GET['idPersonne']);
                 //echo "idVehicule : " . $_GET['idVehicule'] . "<br/>";
                 $reponse->bindParam(':idVehicule', $_GET['idVehicule']);
-                
+
                 $reponse->execute();
-            
+
                 // on termine le traitement de la requete
                 $reponse->closeCursor();
 
@@ -94,43 +94,21 @@
                 $headers = "From: noreply@leize.fr";
 
                 mail($to, $subject, $message, $headers);
-            
+
                 // Message de confirmation
                 echo 'Réservation enregistrée avec succès ! Un email de confirmation a été envoyé.<br/><br/>';
                 echo '<a href="gestionVehicule.htm">Retour à la gestion des véhicules</a>';
-            
+
                 $traitement = true;
             }
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             // $e est un objet de type PDOException
             die('Erreur : ' . $e->getMessage());
         }
-    }
-    else
-    {
+    } else {
         echo 'La page n\'a pas reçu les paramètres demandés !';
     }
-?>
-
-	<a href="gestionVehicule.htm">Précédent</a>
-
-</body>
-<?php
-    if (isset($traitement) && $traitement == true)
-    {
-        // tout s'est bien passé
-        // on retourne à la page Web gestionVehicule.htm
-        echo "<script type=\"text/javascript\">";
-  	        echo "window.location.replace(\"gestionVehicule.htm\");";
-  	    echo "</script>";
-    }
-    else
-    {
-        // il y a eu un problème, on reste sur la page
-        echo "<br/><br/>Problème !!! <br/><br/>";
-        
-    }
     ?>
+</div>
+</body>
 </html>
