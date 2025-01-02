@@ -10,6 +10,8 @@
   </head>
   
   <body>
+      <?php include 'menu.php'; ?>
+      <div class="content">
       <?php
 	// on verifie que la variable idPersonne et que la variable idVehicule existent et que ce sont des nombres entiers
    if (isset($_GET['idPersonne']) && ctype_digit($_GET['idPersonne']) && isset($_GET['idVehicule']) && ctype_digit($_GET['idVehicule']))
@@ -139,6 +141,7 @@
 		echo 'la page n\'a pas recu les parametres demandes !';
 	}
 ?>
+  </div>
   </body>
   
   <script type="text/javascript">

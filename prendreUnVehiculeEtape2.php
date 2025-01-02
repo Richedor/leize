@@ -10,6 +10,8 @@
   </head>
   
   <body>
+  <?php include 'menu.php'; ?>
+  <div class="content">
 <?php
 	// on verifie que la variable idPersonne existe et que c'est un nombre entier
    if (isset($_GET['idPersonne']) && ctype_digit($_GET['idPersonne']))
@@ -84,6 +86,6 @@
 	}
 ?>
 
+</div>
 </body>
 </html>
-
