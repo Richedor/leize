@@ -1,0 +1,73 @@
+
+form
+{
+  /* Uniquement centrer le formulaire sur la page */
+  margin: 0 auto;
+  width: 400px;
+  /* Encadr� pour voir les limites du formulaire */
+  padding: 1em;
+  border: 1px solid #CCC;
+  border-radius: 1em;
+}
+
+form div + div
+{
+  margin-top: 1em;
+}
+
+label
+{
+  /* Pour �tre s�rs que toutes les �tiquettes ont m�me taille et sont correctement align�es */
+  display: inline-block;
+  width: 200px;
+  text-align: right;
+  
+  vertical-align: middle;
+}
+
+input, textarea
+{
+  /* Pour s'assurer que tous les champs texte ont la m�me police.
+     Par d�faut, les textarea ont une police monospace */
+  font: 1em sans-serif;
+
+  /* Pour que tous les champs texte aient la m�me dimension */
+  width: 150px;
+  box-sizing: border-box;
+
+  /* Pour harmoniser le look & feel des bordures des champs texte */
+  border: 1px solid #999;
+}
+
+input:focus, textarea:focus
+{
+  /* Pour souligner l�g�rement les �l�ments actifs */
+  border-color: #000;
+}
+
+textarea
+{
+  /* Pour aligner les champs texte multi-ligne avec leur �tiquette */
+  vertical-align: middle;
+
+  /* Pour donner assez de place pour �crire du texte */
+  height: 5em;
+}
+
+.button
+{
+  /* Pour placer le bouton � la m�me position que les champs texte */
+  padding-left: 90px; /* m�me taille que les �tiquettes */
+}
+
+button
+{
+  /* Cette marge suppl�mentaire repr�sente grosso modo le m�me espace que celui
+     entre les �tiquettes et les champs texte */
+  margin-left: .5em;
+  
+  display: flex;
+  align-items: center;
+}
+
+}
