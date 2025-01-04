@@ -128,7 +128,6 @@
                     $requete = "INSERT INTO trajet (nature, dateDepart, heureDepart, lieuDepart, destination, idPersonne, idVehicule) VALUES (:nature, :dateDepart, :heureDepart, :lieuDepart, :destination, :idPersonne, :idVehicule)";
                     $reponse = $connexionALaBdD->prepare($requete);
                 }
-
                 // $reponse est un objet de type PDOStatement
                 //echo "nature mission : " . $_GET['natureMission'] . "<br/>";
                 $reponse->bindParam(':nature', $_GET['natureMission']);
