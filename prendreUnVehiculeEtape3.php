@@ -5,6 +5,114 @@
     <link rel="stylesheet" href="style.css">
     <?php include_once "parametres.php"; ?>
     <title>Prendre un vehicule - Etape 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .content {
+            margin-top: 60px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 60px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #88421d;
+        }
+
+        p {
+            text-align: center;
+            color: #333;
+        }
+
+        .monContainer {
+            margin: 10px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            border: 1px solid #88421d;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .monContainer:hover {
+            background-color: #FECF67;
+        }
+
+        .maTabulation {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px;
+        }
+
+        .maTabulation a {
+            color: #88421d;
+            text-decoration: none;
+        }
+
+        .maTabulation a:hover {
+            color: #FECF67;
+        }
+
+        .column {
+            flex: 1;
+            text-align: center;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #88421d;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #FECF67;
+            color: #88421d;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form input[type="text"], form textarea, form input[type="date"], form input[type="time"] {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form input[type="submit"], form button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #88421d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form input[type="submit"]:hover, form button[type="submit"]:hover {
+            background-color: #FECF67;
+            color: #88421d;
+        }
+    </style>
 </head>
   
 <body>
@@ -71,6 +179,7 @@
                 ?>
                 <button type="submit" name="envoyer">Enregistrer</button>
             </form>
+            <br/><br/><a href="prendreUnVehiculeEtape2.php" class="button">Précédent</a>
             <?php
                 }
             ?>
@@ -95,7 +204,7 @@
             lieuDeDepart.value = lieuDeDepart.value.trim();
             if (lieuDeDepart.value == "") {
                 alert("Merci de saisir un lieu de départ");
-                document.forms["enregistrerDonnees"]["lieuDepart"].focus();
+                document.forms["enregistrerDonnees"]["lieuDeDepart"].focus();
                 return false;
             } else {
                 url += "&lieuDepart=" + lieuDeDepart.value;

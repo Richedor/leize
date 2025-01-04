@@ -6,7 +6,85 @@
 <?php
     include_once "parametres.php";
 ?>
-<title>Prendre un vehicule - Etape 4</title>
+<title>Confirmation de réservation</title>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .content {
+            margin-top: 60px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 60px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #88421d;
+        }
+
+        p {
+            text-align: center;
+            color: #333;
+        }
+
+        .monContainer {
+            margin: 10px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            border: 1px solid #88421d;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .monContainer:hover {
+            background-color: #FECF67;
+        }
+
+        .maTabulation {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px;
+        }
+
+        .maTabulation a {
+            color: #88421d;
+            text-decoration: none;
+        }
+
+        .maTabulation a:hover {
+            color: #FECF67;
+        }
+
+        .column {
+            flex: 1;
+            text-align: center;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #88421d;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #FECF67;
+            color: #88421d;
+        }
+    </style>
 </head>
 
 <body>
@@ -37,7 +115,7 @@
 
             if ($vehiculeReserve > 0) {
                 echo 'Ce véhicule est déjà réservé.<br/><br/>';
-                echo '<a href="gestionVehicule.htm">Retour à la gestion des véhicules</a>';
+                echo '<a href="gestionVehicule.htm" class="button">Retour à la gestion des véhicules</a>';
             } else {
                 if (isset($_GET['kilometrageDepart']) && ctype_digit($_GET['kilometrageDepart'])) {
                     //echo "<br/>si la variable kilometrageDepart existe, c'est que c'est une voiture !!!<br/>";
@@ -97,7 +175,7 @@
 
                 // Message de confirmation
                 echo 'Réservation enregistrée avec succès ! Un email de confirmation a été envoyé.<br/><br/>';
-                echo '<a href="gestionVehicule.htm">Retour à la gestion des véhicules</a>';
+                echo '<a href="gestionVehicule.htm" class="button">Retour à la gestion des véhicules</a>';
 
                 $traitement = true;
             }
