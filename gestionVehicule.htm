@@ -1,118 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <link rel="stylesheet" href="style.css">
-  <title>Gestion des vehicules</title>
-  <style>
- header {
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Assistant véhicules</title>
+    <style>
+        header {
             text-align: center;  /* Centre le contenu de l'en-tête */
             padding: 20px;  /* Ajoute de l'espace autour du logo */
-            background-color: #f0f0f0;  /* Couleur de fond de l'en-tête */
+            background-color: #FECF67;  /* Couleur de fond de l'en-tête */
         }
 
         /* Style pour l'image du logo */
         #logo {
             max-width: 200px;  /* Taille maximale du logo */
             height: 200px;      /* Garde les proportions de l'image */
-           
-        }
-          /* Style pour le carré qui va être animé */
-        #box {
-            width: 400px;
-            height: 400px;
-            background-color: #3498db;
-            position: absolute;
-            left: 0;
         }
 
-        /* Le bouton pour démarrer l'animation */
-        button {
-            position: absolute;
-            bottom: 20px;
-            background-color: #2ecc71;
-            border: none;
-            padding: 10px 20px;
-            color: white;
+        .center-text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .button-container a {
+            display: inline-block;
+            padding: 15px 30px;
             font-size: 16px;
-            cursor: pointer;
+            color: #fff;
+            background-color: #88421d;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
         }
 
-        button:hover {
-            background-color: #27ae60;
+        .button-container a:hover {
+            background-color: #FECF67;
+            color: #88421d;
         }
-  </style>
-  </head>
-  
-  <body>
-      <header>
-        <img id="logo" src="logo-iut-roanne.webp" alt="">
-        
-    </header>
-   
-    <p>
-        <br>
-      Bienvenue sur l'assistant véhicules de l'UJM,
-      Veuillez sélectionner l'action que vous voulez opérer
-      <br> 
-      <br>
-	<a href="prendreUnVehiculeEtape1.php">Prendre un vehicule</a><br/><br/>
-	</p>
-	<p>
-	<a href="rendreUnvehicule.php">Rendre un vehicule</a>
-	</p>
-	 <div id="box"></div>
-    <button id="startBtn">Démarrer l'animation</button>
-
-    <script>
-        // Sélectionner l'élément à animer et le bouton
-        const box = document.getElementById('box');
-        const startBtn = document.getElementById('startBtn');
-
-        // Variables pour l'animation
-        let position = 0;
-        let isAnimating = false;
-        let animationSpeed = 5; // Vitesse de l'animation (plus grand = plus rapide)
-
-        // Fonction pour démarrer l'animation
-        function startAnimation() {
-            if (isAnimating) return;  // Si l'animation est déjà en cours, on ne la redémarre pas
-            isAnimating = true;
-            
-            // Fonction pour déplacer l'élément
-            function animate() {
-                position += animationSpeed; // Augmente la position
-                
-                // Si le carré dépasse la largeur de l'écran, il revient à gauche
-                if (position > window.innerWidth) {
-                    position = -100; // Remet la position à gauche (en dehors de l'écran)
-                }
-                
-                // Mettre à jour la position de l'élément
-                box.style.left = position + 'px';
-
-                // Continue l'animation jusqu'à ce que l'on l'arrête
-                if (isAnimating) {
-                    requestAnimationFrame(animate); // Appel récursif pour l'animation
-                }
-            }
-
-            // Démarrer l'animation
-            animate();
-        }
-
-        // Fonction pour arrêter l'animation
-        function stopAnimation() {
-            isAnimating = false;
-        }
-
-        // Lier le bouton au démarrage de l'animation
-        startBtn.addEventListener('click', startAnimation);
-
-    </script>
-	
-
-
+    </style>
+</head>
+<body>
+    <?php include 'menu.php'; ?>
+    <div class="content">
+        <header class="center-text">
+            <h1>Bienvenue sur l'assistant véhicules de l'UJM</h1>
+            <p>Veuillez sélectionner l'action que vous voulez opérer</p>
+        </header>
+        <div class="button-container">
+            <a href="prendreUnVehiculeEtape1.php" class="button">Prendre un véhicule</a>
+            <a href="selectionPersonneRetour.php" class="button">Rendre un véhicule</a>
+        </div>
+    </div>
 </body>
 </html>
-
